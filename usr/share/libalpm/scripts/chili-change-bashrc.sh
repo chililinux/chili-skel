@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Replacing the original /etc/skel/.bashrc file with the modified BigCommunity file
+# Replacing the original /etc/skel/.bashrc file with the modified file
 cFile='/etc/skel/.bashrc'
 cbakFile='/etc/skel/.bashrc.bak'
 cnewFile='/etc/skel/.dot.bashrc'
