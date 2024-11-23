@@ -72,5 +72,5 @@ package() {
 	# seg 18 nov 2024 00:29:09 -04
 	# Add link to bin path
 	mkdir "${pkgdir}/usr/bin"
-	ln -sf "/usr/share/libalpm/scripts/big-update-bigapps-category-in-desktopfiles" "${pkgdir}/usr/bin/big-update-bigapps-category-in-desktopfiles"
+	ln -sf "/usr/share/libalpm/scripts/big-update-bigapps-category-in-desktopfiles.sh" "${pkgdir}/usr/bin/big-update-bigapps-category-in-desktopfiles"
 }
