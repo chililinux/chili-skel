@@ -2,7 +2,7 @@
 Type      = Path
 Operation = Install
 Operation = Upgrade
-Target    = etc/skel/.dot.bashrc
+Target    = etc/skel/.bashrc
 
 [Action]
 Description = ChiliLinux change skel .bashrc

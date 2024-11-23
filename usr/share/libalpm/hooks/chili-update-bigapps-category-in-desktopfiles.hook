@@ -7,4 +7,4 @@ Target    = chili-skel
 [Action]
 Description = ChiliLinux update BigApps category in desktop files
 When        = PostTransaction
-Exec        = /usr/share/libalpm/scripts/big-update-bigapps-category-in-desktopfiles.sh
+Exec        = /usr/share/libalpm/scripts/chili-update-bigapps-category-in-desktopfiles.sh
