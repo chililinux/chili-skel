@@ -2,7 +2,7 @@
 
 pkgname=chili-skel
 pkgdesc="User configuration for ChiliLinux"
-#depends=('')
+depends=('noto-nerd-fonts-lite')
 #makedepends=('')
 #optdepends=('')
 conflicts=('bashrc-manjaro')
