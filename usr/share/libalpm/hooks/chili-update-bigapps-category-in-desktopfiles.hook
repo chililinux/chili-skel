@@ -5,6 +5,6 @@ Operation = Upgrade
 Target    = chili-skel
 
 [Action]
-Description = ChiliLinux update BigApps category in desktop files
+Description = ChiliLinux update Apps category in desktop files
 When        = PostTransaction
 Exec        = /usr/share/libalpm/scripts/chili-update-bigapps-category-in-desktopfiles.sh

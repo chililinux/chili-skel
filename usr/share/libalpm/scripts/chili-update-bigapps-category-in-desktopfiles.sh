@@ -28,3 +28,17 @@ for i in /usr/share/applications/big*.desktop; do
         /Big Apps/! s/$/;Big Apps/
     }' "$i"
 done
+
+for i in /usr/share/applications/chili*.desktop; do
+    sed -i '/^Categories=/ {
+        s/\bBiglinux\b/Chili Apps/g
+        /Chili Apps/! s/$/;Chili Apps/
+    }' "$i"
+done
+
+for i in /usr/share/applications/iso2usb*.desktop; do
+    sed -i '/^Categories=/ {
+        s/\bBiglinux\b/Chili Apps/g
+        /Chili Apps/! s/$/;Chili Apps/
+    }' "$i"
+done
