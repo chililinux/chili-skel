@@ -36,7 +36,7 @@ post_install() {
 
 	for dir in "${dirs[@]}"; do
 		if [ -d "${pkgdir}/usr/share/${pkgname}/${dir}" ]; then
-			cp -a "${pkgdir}/usr/share/${pkgname}/${dir}" "${pkgdir}/${dir}/"
+      cp -a "${pkgdir}/usr/share/${pkgname}/${dir}" "/"
 		fi
 	done
 }
