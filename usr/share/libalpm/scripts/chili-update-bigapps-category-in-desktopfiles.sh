@@ -22,23 +22,27 @@ Se a linha original for:  Categories=Utility;Graphics;
 Ela será transformada em: Categories=Utility;Graphics;Big Apps;
 REMARK
 
-for i in /usr/share/applications/big*.desktop; do
-    sed -i '/^Categories=/ {
-        s/\bBiglinux\b/Big Apps/g
-        /Big Apps/! s/$/;Big Apps/
-    }' "$i"
+for i in /usr/share/applications/chili*.desktop /usr/share/applications/big*.desktop /usr/share/applications/iso2usb*.desktop; do
+  # Verifica se o arquivo existe antes de modificá-lo
+  [ -f "$i" ] || continue
+
+  # Substitui 'Biglinux' por 'Chili Apps'
+  sed -i 's/\bBiglinux\b/Chili Apps/g' "$i"
+
+  # Adiciona 'Chili Apps' se não existir na linha 'Categories='
+  sed -i '/^Categories=/{
+    /Chili Apps/! s/$/;Chili Apps/
+  }' "$i"
+
+  # Adiciona 'Big Apps' se não existir na linha 'Categories='
+  sed -i '/^Categories=/{
+    /Big Apps/! s/$/;Big Apps/
+  }' "$i"
+
+  # Remove duplicados de ';'
+  sed -i '/^Categories=/ s/;;*/;/g' "$i"
+
+  # Garante que termina com ';'
+  sed -i '/^Categories=/!b; s/[^;]$/&;/' "$i"
 done
 
-for i in /usr/share/applications/chili*.desktop; do
-    sed -i '/^Categories=/ {
-        s/\bBiglinux\b/Chili Apps/g
-        /Chili Apps/! s/$/;Chili Apps/
-    }' "$i"
-done
-
-for i in /usr/share/applications/iso2usb*.desktop; do
-    sed -i '/^Categories=/ {
-        s/\bBiglinux\b/Chili Apps/g
-        /Chili Apps/! s/$/;Chili Apps/
-    }' "$i"
-done

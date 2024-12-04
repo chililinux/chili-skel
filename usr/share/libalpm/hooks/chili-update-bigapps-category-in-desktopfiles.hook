@@ -3,6 +3,15 @@ Type      = Package
 Operation = Install
 Operation = Upgrade
 Target    = chili-skel
+Target    = big-store
+Target    = chili-webapps
+Target    = biglinux-webapps
+Target    = chili-restore-config
+Target    = biglinux-config
+Target    = biglinux-driver-manager
+Target    = bigcontrolcenter
+Target    = bigcontrolcenter-base
+Target    = calamares-chili
 
 [Action]
 Description = ChiliLinux update Apps category in desktop files
