@@ -15,6 +15,7 @@ license=('MIT')
 url="https://github.com/chililinux/${pkgname}"
 source=("git+${url}.git")
 md5sums=('SKIP')
+backup=('etc/skel/.bashrc' 'etc/skel/.bash_profile' 'etc/skel/.bash_logout')
 
 # Automatically detect and use the correct install file
 if [ -e "${pkgname}.install" ]; then
@@ -42,25 +43,29 @@ check() {
 }
 
 package() {
-	mkdir -p "${pkgdir}/etc/skel"
-	cp "${srcdir}/${pkgname}/etc/skel/.bash_logout" "${pkgdir}/etc/skel/.bash_logout.new"
-	cp "${srcdir}/${pkgname}/etc/skel/.bash_profile" "${pkgdir}/etc/skel/.bash_profile.new"
-	cp "${srcdir}/${pkgname}/etc/skel/.bashrc" "${pkgdir}/etc/skel/.bashrc"
+	install -Dm644 "${srcdir}/.bashrc" "${pkgdir}/etc/skel/.bashrc"
+	install -Dm644 "${srcdir}/.bash_logout" "${pkgdir}/etc/skel/.bash_logout"
+	install -Dm644 "${srcdir}/.bash_profile" "${pkgdir}/etc/skel/.bash_profile"
 
-	local paths=('etc/skel')
-	for new_path in "${paths[@]}"; do
-		mkdir -p "${pkgdir}/$new_path"
-		for i in ${srcdir}/${pkgname}/${new_path}/*; do
-			if [[ -d "$i" ]]; then
-				# Copiar diretórios recursivamente
-				cp -r "$i" "${pkgdir}/${new_path}/"
-			elif [[ -f "$i" ]]; then
-				# Copiar arquivos individuais
-				filename=$(basename "$i")
-				cp "$i" "${pkgdir}/${new_path}/${filename}.new"
-			fi
-		done
-	done
+#	mkdir -p "${pkgdir}/etc/skel"
+#	cp "${srcdir}/${pkgname}/etc/skel/.bash_logout" "${pkgdir}/etc/skel/.bash_logout.new"
+#	cp "${srcdir}/${pkgname}/etc/skel/.bash_profile" "${pkgdir}/etc/skel/.bash_profile.new"
+#	cp "${srcdir}/${pkgname}/etc/skel/.bashrc" "${pkgdir}/etc/skel/.bashrc"
+#
+#	local paths=('etc/skel')
+#	for new_path in "${paths[@]}"; do
+#		mkdir -p "${pkgdir}/$new_path"
+#		for i in ${srcdir}/${pkgname}/${new_path}/*; do
+#			if [[ -d "$i" ]]; then
+#				# Copiar diretórios recursivamente
+#				cp -r "$i" "${pkgdir}/${new_path}/"
+#			elif [[ -f "$i" ]]; then
+#				# Copiar arquivos individuais
+#				filename=$(basename "$i")
+#				cp "$i" "${pkgdir}/${new_path}/${filename}.new"
+#			fi
+#		done
+#	done
 
 	cd "${srcdir}/${pkgname}"
 	# Determine the correct source directory
