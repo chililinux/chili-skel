@@ -37,6 +37,7 @@ post_install() {
 	for dir in "${dirs[@]}"; do
 		if [ -d "/usr/share/${pkgname}/${dir}" ]; then
 			# Copiar os arquivos e subdiretórios de /usr/share/${pkgname}/${dir} para o sistema
+			echo "Copiando de /usr/share/${pkgname}/${dir} para /"
 			cp -a "/usr/share/${pkgname}/${dir}" "/"
 		fi
 	done

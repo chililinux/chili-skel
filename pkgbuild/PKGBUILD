@@ -23,9 +23,6 @@ elif [ -e "pkgbuild.install" ]; then
 	install=pkgbuild.install
 fi
 
-#/mnt/home/github/chililinux/chili-skel/pkgbuild/src
-#/mnt/home/github/chililinux/chili-skel/pkgbuild/pkg/chili-skel
-
 package() {
 	# Instale todos os arquivos em /usr/share/chili-skel no momento da criação do pacote:
 	install -dm755 "${pkgdir}/usr/share/${pkgname}"
