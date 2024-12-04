@@ -15,7 +15,6 @@ license=('MIT')
 url="https://github.com/chililinux/${pkgname}"
 source=("git+${url}.git")
 md5sums=('SKIP')
-backup=('etc/skel/.bashrc' 'etc/skel/.bash_profile' 'etc/skel/.bash_logout')
 
 # Automatically detect and use the correct install file
 if [ -e "${pkgname}.install" ]; then
@@ -24,10 +23,20 @@ elif [ -e "pkgbuild.install" ]; then
 	install=pkgbuild.install
 fi
 
+#/mnt/home/github/chililinux/chili-skel/pkgbuild/src
+#/mnt/home/github/chililinux/chili-skel/pkgbuild/pkg/chili-skel
+
 package() {
-  # Instale todos os arquivos em /usr/share/chili-skel no momento da criação do pacote:
-  install -dm755 "${pkgdir}/usr/share/${pkgname}"
-  cp -r "${srcdir}/${pkgname}/etc/skel/"* "${pkgdir}/usr/share/${pkgname}"
+	# Instale todos os arquivos em /usr/share/chili-skel no momento da criação do pacote:
+	install -dm755 "${pkgdir}/usr/share/${pkgname}"
+
+	# Copiar a estrutura de /etc, /usr e /opt para /usr/share/${pkgname}
+	local dirs=("usr" "etc" "opt")
+	for dir in "${dirs[@]}"; do
+		if [ -d "${srcdir}/${pkgname}/${dir}" ]; then
+			cp -a "${srcdir}/${pkgname}/${dir}" "${pkgdir}/usr/share/${pkgname}/"
+		fi
+	done
 
 	# Install license file if present
 	if [ -f "LICENSE" ]; then
