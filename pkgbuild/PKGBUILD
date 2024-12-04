@@ -24,56 +24,10 @@ elif [ -e "pkgbuild.install" ]; then
 	install=pkgbuild.install
 fi
 
-prepare() {
-	cd "${srcdir}/${pkgname}"
-	# Add any preparation steps here, if needed
-	# For example: patch -p1 < "${srcdir}/patch-file.patch"
-}
-
-build() {
-	cd "${srcdir}/${pkgname}"
-	# Add build steps here, if needed
-	# For example: make
-}
-
-check() {
-	cd "${srcdir}/${pkgname}"
-	# Add check/test steps here, if needed
-	# For example: make check
-}
-
 package() {
-	install -Dm644 "${srcdir}/${pkgname}/etc/skel/.bashrc" "${pkgdir}/etc/skel/.bashrc"
-	install -Dm644 "${srcdir}/${pkgname}/etc/skel/.bash_logout" "${pkgdir}/etc/skel/.bash_logout"
-	install -Dm644 "${srcdir}/${pkgname}/etc/skel/.bash_profile" "${pkgdir}/etc/skel/.bash_profile"
-
-#	mkdir -p "${pkgdir}/etc/skel"
-#	cp "${srcdir}/${pkgname}/etc/skel/.bash_logout" "${pkgdir}/etc/skel/.bash_logout.new"
-#	cp "${srcdir}/${pkgname}/etc/skel/.bash_profile" "${pkgdir}/etc/skel/.bash_profile.new"
-#	cp "${srcdir}/${pkgname}/etc/skel/.bashrc" "${pkgdir}/etc/skel/.bashrc"
-#
-#	local paths=('etc/skel')
-#	for new_path in "${paths[@]}"; do
-#		mkdir -p "${pkgdir}/$new_path"
-#		for i in ${srcdir}/${pkgname}/${new_path}/*; do
-#			if [[ -d "$i" ]]; then
-#				# Copiar diretórios recursivamente
-#				cp -r "$i" "${pkgdir}/${new_path}/"
-#			elif [[ -f "$i" ]]; then
-#				# Copiar arquivos individuais
-#				filename=$(basename "$i")
-#				cp "$i" "${pkgdir}/${new_path}/${filename}.new"
-#			fi
-#		done
-#	done
-
-	cd "${srcdir}/${pkgname}"
-	# Determine the correct source directory
-	if [ -d "${pkgname}" ]; then
-		srcdir="${srcdir}/${pkgname}/${pkgname}"
-	else
-		srcdir="${srcdir}/${pkgname}"
-	fi
+  # Instale todos os arquivos em /usr/share/chili-skel no momento da criação do pacote:
+  install -dm755 "${pkgdir}/usr/share/${pkgname}"
+  cp -r "${srcdir}/${pkgname}/etc/skel/"* "${pkgdir}/usr/share/${pkgname}"
 
 	# Install license file if present
 	if [ -f "LICENSE" ]; then
