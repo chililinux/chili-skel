@@ -43,9 +43,9 @@ check() {
 }
 
 package() {
-	install -Dm644 "${srcdir}/.bashrc" "${pkgdir}/etc/skel/.bashrc"
-	install -Dm644 "${srcdir}/.bash_logout" "${pkgdir}/etc/skel/.bash_logout"
-	install -Dm644 "${srcdir}/.bash_profile" "${pkgdir}/etc/skel/.bash_profile"
+	install -Dm644 "${srcdir}/${pkgname}/etc/skel/.bashrc" "${pkgdir}/etc/skel/.bashrc"
+	install -Dm644 "${srcdir}/${pkgname}/etc/skel/.bash_logout" "${pkgdir}/etc/skel/.bash_logout"
+	install -Dm644 "${srcdir}/${pkgname}/etc/skel/.bash_profile" "${pkgdir}/etc/skel/.bash_profile"
 
 #	mkdir -p "${pkgdir}/etc/skel"
 #	cp "${srcdir}/${pkgname}/etc/skel/.bash_logout" "${pkgdir}/etc/skel/.bash_logout.new"
