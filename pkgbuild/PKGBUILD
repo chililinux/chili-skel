@@ -3,11 +3,9 @@
 pkgname=chili-skel
 pkgdesc="User configuration for ChiliLinux"
 depends=('noto-nerd-fonts-lite')
-#makedepends=('')
-#optdepends=('')
-conflicts=('big-skel' 'comm-skel' 'bashrc-manjaro')
-replaces=('big-skel' 'comm-skel' 'bashrc-manjaro')
-provides=('bashrc')
+conflicts=('bashrc' 'big-skel' 'comm-skel' 'bashrc-manjaro')
+replaces=('bashrc' 'big-skel' 'comm-skel' 'bashrc-manjaro')
+provides=('bashrc' 'big-skel' 'comm-skel' 'bashrc-manjaro')
 pkgver=$(date +%Y%m%d)
 pkgrel=$(date +%H%M)
 arch=('any')
