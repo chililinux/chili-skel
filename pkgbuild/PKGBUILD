@@ -2,8 +2,12 @@
 
 pkgname=chili-skel
 pkgdesc="User configuration for ChiliLinux"
-conflicts=('big-skel' 'comm-skel' 'bashrc-manjaro')
-provides=('bashrc')
+replaces=(
+  big-skel
+  comm-skel
+  bashrc-manjaro
+)
+provides=(bashrc)
 pkgver=$(date +%Y%m%d)
 pkgrel=$(date +%H%M)
 arch=('any')
@@ -11,7 +15,7 @@ license=('MIT')
 url="https://github.com/chililinux/${pkgname}"
 source=("git+${url}.git")
 md5sums=('SKIP')
-depends=('noto-nerd-fonts-lite')
+depends=(noto-nerd-fonts-lite)
 
 # Automatically detect and use the correct install file
 if [ -e "${pkgname}.install" ]; then
@@ -21,7 +25,7 @@ elif [ -e "pkgbuild.install" ]; then
 fi
 
 package() {
-	# Instale todos os arquivos em /usr/share/chili-skel no momento da criação do pacote:
+	# Instale todos os arquivos em /usr/share/${pkgname} no momento da criação do pacote:
 	install -dm755 "${pkgdir}/usr/share/${pkgname}"
 
 	# Copiar a estrutura de /etc, /usr e /opt para /usr/share/${pkgname}
@@ -44,6 +48,6 @@ package() {
 
 	# seg 18 nov 2024 00:29:09 -04
 	# Add link to bin path
-	mkdir "${pkgdir}/usr/bin"
+	mkdir -p "${pkgdir}/usr/bin"
 	ln -sf "/usr/share/libalpm/scripts/chili-update-bigapps-category-in-desktopfiles.sh" "${pkgdir}/usr/bin/chili-update-bigapps-category-in-desktopfiles.sh"
 }
