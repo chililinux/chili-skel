@@ -2,9 +2,7 @@
 
 pkgname=chili-skel
 pkgdesc="User configuration for ChiliLinux"
-depends=('noto-nerd-fonts-lite')
 conflicts=('big-skel' 'comm-skel' 'bashrc-manjaro')
-replaces=('big-skel' 'comm-skel' 'bashrc-manjaro')
 provides=('bashrc')
 pkgver=$(date +%Y%m%d)
 pkgrel=$(date +%H%M)
@@ -13,6 +11,7 @@ license=('MIT')
 url="https://github.com/chililinux/${pkgname}"
 source=("git+${url}.git")
 md5sums=('SKIP')
+depends=('noto-nerd-fonts-lite')
 
 # Automatically detect and use the correct install file
 if [ -e "${pkgname}.install" ]; then
